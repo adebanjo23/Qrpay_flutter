@@ -15,69 +15,66 @@ class Load4Screen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          // Background or other widgets if needed
-
-          // Positioned image widget
-          Positioned(
-            top: 130.0,
-            left: 41.0,
-            width: 309.0,
-            height: 309.0,
-            child: Image.asset('assets/load_screens/7.png'), // Replace with your first image asset path
-          ),
-
-
-          // Positioned first text widget
-          const Positioned(
-            top: 457.0, // Adjust the top position as needed
-            left: 68.0, // Adjust the left position as needed
-            width: 139.0, // Set the width
-            height: 50.0, // Set the height
-            child: Text(
-              'Welcome to QRpay',
-              style: TextStyle(
-                fontFamily: 'Inter',
-                fontSize: 21.0,
-                fontWeight: FontWeight.w600,
-                height: 1.22, // This corresponds to a line height of 22px for 18px font size
-                letterSpacing: 0.0, // No letter-spacing
-                color: Colors.black, // Text color set to black
+      body: Container(
+        padding: const EdgeInsets.only(top: 160),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Center(
+                child: Image.asset(
+                  'assets/load_screens/7.png', // Replace with your image path
+                  width: MediaQuery.of(context).size.width, // Adjust the width as needed
+                  height: 300, // Adjust the height as needed
+                ),
               ),
-              textAlign: TextAlign.left, // Text alignment
-            ),
-          ),
+              const SizedBox(height: 10),
+              Container(
+                padding: const EdgeInsets.only(right: 120),
+                child: const Text(
+                  "Welcome To \n QRpay",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontFamily: 'Inter',
+                    fontWeight: FontWeight.w700,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 80),
+              Container(
+                padding: const EdgeInsets.only(left: 60, right: 20),
+                child: Row(
+                  children: [
+                    InkWell(
+                        onTap: () {
+                          // Navigate to /home when the image is tapped
+                          Navigator.pushNamed(context, '/login');
 
-          Positioned(
-            top: 626.0, // Adjust the top position as needed
-            left: 63.0, // Adjust the left position as needed
-            width: 254.0, // Set the width
-            height: 44.0, // Set the height
-            child: InkWell(
-              onTap: () {
-                // Navigate to /home when the image is tapped
-                Navigator.pushNamed(context, '/login');
-              },
-              child: Image.asset('assets/load_screens/8.png'), // Replace with your third image asset path
-            ),
-          ),
+                        },
+                        child: Image.asset('assets/load_screens/8.png')
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 20),
+              Container(
+                padding: const EdgeInsets.only(left: 60, right: 20),
+                child: Row(
+                  children: [
+                    InkWell(
+                        onTap: () {
+                          // Navigate to /home when the image is tapped
+                          Navigator.pushNamed(context, '/signup');
 
-          // Positioned fourth image widget as a button
-          Positioned(
-            top: 690.0, // Adjust the top position as needed
-            left: 68.0, // Adjust the left position as needed
-            width: 254.0, // Set the width
-            height: 44.0, // Set the height
-            child: InkWell(
-              onTap: () {
-                // Navigate to /home when the image is tapped
-                Navigator.pushNamed(context, '/signup');
-              },
-              child: Image.asset('assets/load_screens/9.png'), // Replace with your fourth image asset path
-            ),
+                        },
+                        child: Image.asset('assets/load_screens/9.png')
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }

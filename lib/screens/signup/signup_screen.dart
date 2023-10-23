@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:qrpay/colors.dart' as color;
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -23,7 +24,6 @@ class _SignupScreenState extends State<SignupScreen> {
   final TextEditingController _passwordTEC = TextEditingController();
   final TextEditingController _password2TEC = TextEditingController();
 
-
   signup() async {
     final username = _usernameTEC.text;
     final phone = _phoneTEC.text;
@@ -32,12 +32,16 @@ class _SignupScreenState extends State<SignupScreen> {
     try {
       final response = await http.post(
           Uri.parse("http://492f-102-91-4-178.ngrok-free.app/user/signup/"),
-          body: {"username": username, "phone": phone, "password1": password1, "password2": password2});
+          body: {
+            "username": username,
+            "phone": phone,
+            "password1": password1,
+            "password2": password2
+          });
 
-      if (response.statusCode == 200){
+      if (response.statusCode == 200) {
         print(response.body);
-      }
-      else{
+      } else {
         throw Exception('Failed to load post');
       }
     } catch (e) {
@@ -48,259 +52,210 @@ class _SignupScreenState extends State<SignupScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-
-
-          // Positioned first text widget
-          const Positioned(
-            top: 86.0, // Adjust the top position as needed
-            left: 165.0, // Adjust the left position as needed
-            width: 84.0, // Set the width
-            height: 27.0, // Set the height
-            child: Text(
-              'Sign Up',
-              style: TextStyle(
-                fontFamily: 'Inter',
-                fontSize: 22.0,
-                fontWeight: FontWeight.w700,
-                height: 1.22, // This corresponds to a line height of 22px for 18px font size
-                letterSpacing: 0.0, // No letter-spacing
-                color: Colors.black, // Text color set to black
-              ),
-              textAlign: TextAlign.left, // Text alignment
-            ),
-          ),
-
-          // Positioned Second text widget
-          const Positioned(
-            top: 155.0, // Adjust the top position as needed
-            left: 30.0, // Adjust the left position as needed
-            width: 90.0, // Set the width
-            height: 22.0, // Set the height
-            child: Text(
-              'Username',
-              style: TextStyle(
-                fontFamily: 'Inter',
-                fontSize: 18.0,
-                fontWeight: FontWeight.w600,
-                height: 1.22, // This corresponds to a line height of 22px for 18px font size
-                letterSpacing: 0.0, // No letter-spacing
-                color: Colors.black, // Text color set to black
-              ),
-              textAlign: TextAlign.left, // Text alignment
-            ),
-          ),
-
-          // Positioned username text box
-          Positioned(
-            top: 185.0, // Adjust the top position as needed
-            left: 30.0, // Adjust the left position as needed
-            width: 330.0, // Set the width
-            height: 50.0, // Set the height
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                border: Border.all(
-                  width: 1,
-                  color: Colors.green, // Set the border color to light green
-                ),
-              ),
-              child: Center(
-                child: TextField(
-                  controller: _usernameTEC,
-                  textAlignVertical: TextAlignVertical.center, // Center text vertically
-                  decoration: const InputDecoration(
-                    contentPadding: EdgeInsets.fromLTRB(14, 12, 14, 12),
-                    hintText: "what's your name?",
-                    border: InputBorder.none,
+      body: Container(
+        padding: const EdgeInsets.only(top: 120, left: 30, right: 20),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const Center(
+                child: Text(
+                  "Sign Up",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontFamily: 'Inter',
+                    fontWeight: FontWeight.w700,
+                    color: Colors.black,
                   ),
                 ),
               ),
-            ),
-          ),
-
-          // Positioned third text widget
-          const Positioned(
-            top: 244.0, // Adjust the top position as needed
-            left: 30.0, // Adjust the left position as needed
-            width: 60.0, // Set the width
-            height: 22.0, // Set the height
-            child: Text(
-              'Phone',
-              style: TextStyle(
-                fontFamily: 'Inter',
-                fontSize: 18.0,
-                fontWeight: FontWeight.w600,
-                height: 1.22, // This corresponds to a line height of 22px for 18px font size
-                letterSpacing: 0.0, // No letter-spacing
-                color: Colors.black, // Text color set to black
+              const SizedBox(height: 40,),
+              //// Username Section
+              Row(
+                children: [
+                  Text(
+                    "Username",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.w500,
+                      color: color.AppColor.SignupText2,
+                  ),
+                  ),
+                ],
               ),
-              textAlign: TextAlign.left, // Text alignment
-            ),
-          ),
-
-          // Positioned Phone text box
-          Positioned(
-            top: 274.0, // Adjust the top position as needed
-            left: 30.0, // Adjust the left position as needed
-            width: 330.0, // Set the width
-            height: 50.0, // Set the height
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                border: Border.all(
+              const SizedBox(height: 10,),
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: 43,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(
                   width: 1,
-                  color: Colors.green, // Set the border color to light green
+                  color: color.AppColor.TextContainerColor, // Set the border color to light green
                 ),
-              ),
-              child: Center(
-                child: TextField(
-                  controller: _phoneTEC,
-                  textAlignVertical: TextAlignVertical.center, // Center text vertically
-                  decoration: const InputDecoration(
-                    contentPadding: EdgeInsets.fromLTRB(14, 12, 14, 12),
-                    hintText: 'your phone number?',
-                    border: InputBorder.none,
+                ),
+                child:  Center(
+                  child: TextField(
+                    controller: _usernameTEC,
+                    textAlignVertical: TextAlignVertical.center, // Center text vertically
+                    decoration: const InputDecoration(
+                      contentPadding: EdgeInsets.fromLTRB(14, 12, 14, 12),
+                      hintText: "what's your name?",
+                      border: InputBorder.none,
+                    ),
                   ),
                 ),
               ),
-            ),
-          ),
-
-          // Positioned fourth text widget
-          const Positioned(
-            top: 333.0, // Adjust the top position as needed
-            left: 30.0, // Adjust the left position as needed
-            width: 86.0, // Set the width
-            height: 22.0, // Set the height
-            child: Text(
-              'Password',
-              style: TextStyle(
-                fontFamily: 'Inter',
-                fontSize: 18.0,
-                fontWeight: FontWeight.w600,
-                height: 1.22, // This corresponds to a line height of 22px for 18px font size
-                letterSpacing: 0.0, // No letter-spacing
-                color: Colors.black, // Text color set to black
+              //// Phone Number Section
+              const SizedBox(height: 10,),
+              Row(
+                children: [
+                  Text(
+                    "Phone",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.w500,
+                      color: color.AppColor.SignupText2,
+                    ),
+                  ),
+                ],
               ),
-              textAlign: TextAlign.left, // Text alignment
-            ),
-          ),
-
-          // Positioned password text box
-          Positioned(
-            top: 363.0, // Adjust the top position as needed
-            left: 30.0, // Adjust the left position as needed
-            width: 330.0, // Set the width
-            height: 50.0, // Set the height
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                border: Border.all(
-                  width: 1,
-                  color: Colors.green, // Set the border color to light green
+              const SizedBox(height: 10,),
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: 43,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(
+                    width: 1,
+                    color: color.AppColor.TextContainerColor, // Set the border color to light green
+                  ),
                 ),
-              ),
-              child: Center(
-                child: TextField(
-                  controller: _passwordTEC,
-                  textAlignVertical: TextAlignVertical.center, // Center text vertically
-                  decoration: const InputDecoration(
-                    contentPadding: EdgeInsets.fromLTRB(14, 12, 14, 12),
-                    hintText: 'your secret code?',
-                    border: InputBorder.none,
+                child:  Center(
+                  child: TextField(
+                    controller: _phoneTEC,
+                    textAlignVertical: TextAlignVertical.center, // Center text vertically
+                    decoration: const InputDecoration(
+                      contentPadding: EdgeInsets.fromLTRB(14, 12, 14, 12),
+                      hintText: "enter you phone number",
+                      border: InputBorder.none,
+                    ),
                   ),
                 ),
               ),
-            ),
-          ),
-
-
-          // Positioned fifth text widget
-          const Positioned(
-            top: 422.0, // Adjust the top position as needed
-            left: 30.0, // Adjust the left position as needed
-            width: 86.0, // Set the width
-            height: 22.0, // Set the height
-            child: Text(
-              'Confirm Password',
-              style: TextStyle(
-                fontFamily: 'Inter',
-                fontSize: 18.0,
-                fontWeight: FontWeight.w600,
-                height: 1.22, // This corresponds to a line height of 22px for 18px font size
-                letterSpacing: 0.0, // No letter-spacing
-                color: Colors.black, // Text color set to black
+              //// Password Section
+              const SizedBox(height: 10,),
+              Row(
+                children: [
+                  Text(
+                    "Password",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.w500,
+                      color: color.AppColor.SignupText2,
+                    ),
+                  ),
+                ],
               ),
-              textAlign: TextAlign.left, // Text alignment
-            ),
-          ),
-
-          // Positioned confirm password text box
-          Positioned(
-            top: 452.0, // Adjust the top position as needed
-            left: 30.0, // Adjust the left position as needed
-            width: 330.0, // Set the width
-            height: 50.0, // Set the height
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                border: Border.all(
-                  width: 1,
-                  color: Colors.green, // Set the border color to light green
+              const SizedBox(height: 10,),
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: 43,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(
+                    width: 1,
+                    color: color.AppColor.TextContainerColor, // Set the border color to light green
+                  ),
                 ),
-              ),
-              child: Center(
-                child: TextField(
-                  controller: _password2TEC,
-                  textAlignVertical: TextAlignVertical.center, // Center text vertically
-                  decoration: const InputDecoration(
-                    contentPadding: EdgeInsets.fromLTRB(14, 12, 14, 12),
-                    hintText: "make sure it's a match",
-                    border: InputBorder.none,
+                child:  Center(
+                  child: TextField(
+                    controller: _passwordTEC,
+                    textAlignVertical: TextAlignVertical.center, // Center text vertically
+                    decoration: const InputDecoration(
+                      contentPadding: EdgeInsets.fromLTRB(14, 12, 14, 12),
+                      hintText: "your secret code?",
+                      border: InputBorder.none,
+                    ),
                   ),
                 ),
               ),
-            ),
+              //// Confirm Password Section
+              const SizedBox(height: 10,),
+              Row(
+                children: [
+                  Text(
+                    "Confirm Password",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.w500,
+                      color: color.AppColor.SignupText2,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 10,),
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: 43,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(
+                    width: 1,
+                    color: color.AppColor.TextContainerColor, // Set the border color to light green
+                  ),
+                ),
+                child:  Center(
+                  child: TextField(
+                    controller: _password2TEC,
+                    textAlignVertical: TextAlignVertical.center, // Center text vertically
+                    decoration: const InputDecoration(
+                      contentPadding: EdgeInsets.fromLTRB(14, 12, 14, 12),
+                      hintText: "make sure it is a match",
+                      border: InputBorder.none,
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 60,),
+              Container(
+                padding: const EdgeInsets.only(left: 40, right: 20),
+                child: Row(
+                  children: [
+                    InkWell(
+                        onTap: () {
+                          // Navigate to /home when the image is tapped
+                          Navigator.pushNamed(context, '/load3');
+
+                        },
+                        child: Image.asset('assets/6.png')
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 120,),
+              Container(
+                padding: const EdgeInsets.only(left: 70, right: 20),
+                child: Row(
+                  children: [
+                    InkWell(
+                        onTap: () {
+                          // Navigate to /home when the image is tapped
+                          Navigator.pushNamed(context, '/login');
+
+                        },
+                        child: Image.asset('assets/7.png')
+                    ),
+                  ],
+                ),
+              )
+
+            ],
           ),
-
-
-          // Positioned signup button
-          Positioned(
-            top: 570.0, // Adjust the top position as needed
-            left: 68.0, // Adjust the left position as needed
-            width: 254.0, // Set the width
-            height: 44.0, // Set the height
-            child: InkWell(
-              onTap: () {
-
-                Navigator.pushNamed(context, '/home');
-                // Navigate to /home when the image is tapped
-                // signup();
-              },
-              child: Image.asset('assets/6.png'), // Replace with your fourth image asset path
-            ),
-          ),
-
-          // Positioned already have an account button
-          Positioned(
-            top: 730.0, // Adjust the top position as needed
-            left: 104.0, // Adjust the left position as needed
-            width: 183.0, // Set the width
-            height: 16.0, // Set the height
-            child: InkWell(
-              onTap: () {
-                // Navigate to /home when the image is tapped
-                Navigator.pushNamed(context, '/login');
-              },
-              child: Image.asset('assets/7.png'), // Replace with your fourth image asset path
-            ),
-          ),
-
-
-
-        ],
+        ),
       ),
     );
   }

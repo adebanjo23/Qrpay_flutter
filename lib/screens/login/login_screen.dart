@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:qrpay/colors.dart' as color;
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -18,21 +19,21 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final TextEditingController _usernameTEC = TextEditingController();
+  bool? isChecked = false;
+  final TextEditingController _phoneTEC = TextEditingController();
   final TextEditingController _passwordTEC = TextEditingController();
 
   login() async {
-    final username = _usernameTEC.text;
+    final phone = _phoneTEC.text;
     final password = _passwordTEC.text;
     try {
       final response = await http.post(
           Uri.parse("http://492f-102-91-4-178.ngrok-free.app/user/login/"),
-          body: {"username": username, "password": password});
+          body: {"phone": phone, "password": password});
 
-      if (response.statusCode == 200){
+      if (response.statusCode == 200) {
         print(response.body);
-      }
-      else{
+      } else {
         throw Exception('Failed to load post');
       }
     } catch (e) {
@@ -43,284 +44,217 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          // Positioned first text widget
-          const Positioned(
-            top: 86.0, // Adjust the top position as needed
-            left: 165.0, // Adjust the left position as needed
-            width: 60.0, // Set the width
-            height: 27.0, // Set the height
-            child: Text(
-              'Login',
-              style: TextStyle(
-                fontFamily: 'Inter',
-                fontSize: 22.0,
-                fontWeight: FontWeight.w700,
-                height:
-                    1.22, // This corresponds to a line height of 22px for 18px font size
-                letterSpacing: 0.0, // No letter-spacing
-                color: Colors.black, // Text color set to black
+        body: Container(
+      padding: const EdgeInsets.only(top: 120, left: 30, right: 20),
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            const Center(
+              child: Text(
+                "Login",
+                style: TextStyle(
+                  fontSize: 22,
+                  fontFamily: 'Inter',
+                  fontWeight: FontWeight.w700,
+                  color: Colors.black,
+                ),
               ),
-              textAlign: TextAlign.left, // Text alignment
             ),
-          ),
-
-          // Positioned Second text widget
-          const Positioned(
-            top: 155.0, // Adjust the top position as needed
-            left: 30.0, // Adjust the left position as needed
-            width: 90.0, // Set the width
-            height: 22.0, // Set the height
-            child: Text(
-              'Username',
-              style: TextStyle(
-                fontFamily: 'Inter',
-                fontSize: 18.0,
-                fontWeight: FontWeight.w600,
-                height:
-                    1.22, // This corresponds to a line height of 22px for 18px font size
-                letterSpacing: 0.0, // No letter-spacing
-                color: Colors.black, // Text color set to black
-              ),
-              textAlign: TextAlign.left, // Text alignment
+            const SizedBox(
+              height: 50,
             ),
-          ),
-
-          // Positioned login text box
-          Positioned(
-            top: 185.0, // Adjust the top position as needed
-            left: 30.0, // Adjust the left position as needed
-            width: 330.0, // Set the width
-            height: 50.0, // Set the height
-            child: Container(
+            Row(
+              children: [
+                Text(
+                  "Phone Number",
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontFamily: 'Inter',
+                    fontWeight: FontWeight.w500,
+                    color: color.AppColor.SignupText2,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Container(
+              width: MediaQuery.of(context).size.width,
+              height: 43,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
                 border: Border.all(
                   width: 1,
-                  color: Colors.green, // Set the border color to light green
+                  color: color.AppColor
+                      .TextContainerColor, // Set the border color to light green
                 ),
               ),
               child: Center(
                 child: TextField(
-                  controller: _usernameTEC,
+                  controller: _phoneTEC,
                   textAlignVertical:
                       TextAlignVertical.center, // Center text vertically
                   decoration: const InputDecoration(
                     contentPadding: EdgeInsets.fromLTRB(14, 12, 14, 12),
-                    hintText: "what's your name?",
+                    hintText: "your phone number? ",
                     border: InputBorder.none,
                   ),
                 ),
               ),
             ),
-          ),
-
-          const Positioned(
-            top: 260.0, // Adjust the top position as needed
-            left: 30.0, // Adjust the left position as needed
-            width: 86.0, // Set the width
-            height: 22.0, // Set the height
-            child: Text(
-              'Password',
-              style: TextStyle(
-                fontFamily: 'Inter',
-                fontSize: 18.0,
-                fontWeight: FontWeight.w600,
-                height:
-                    1.22, // This corresponds to a line height of 22px for 18px font size
-                letterSpacing: 0.0, // No letter-spacing
-                color: Colors.black, // Text color set to black
-              ),
-              textAlign: TextAlign.left, // Text alignment
+            const SizedBox(
+              height: 30,
             ),
-          ),
-
-          Positioned(
-            top: 290.0, // Adjust the top position as needed
-            left: 30.0, // Adjust the left position as needed
-            width: 330.0, // Set the width
-            height: 50.0, // Set the height
-            child: Container(
+            Row(
+              children: [
+                Text(
+                  "Password",
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontFamily: 'Inter',
+                    fontWeight: FontWeight.w500,
+                    color: color.AppColor.SignupText2,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Container(
+              width: MediaQuery.of(context).size.width,
+              height: 43,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
                 border: Border.all(
                   width: 1,
-                  color: Colors.green, // Set the border color to light green
+                  color: color.AppColor
+                      .TextContainerColor, // Set the border color to light green
                 ),
               ),
               child: Center(
                 child: TextField(
-                  controller: _passwordTEC,
+                  controller: _phoneTEC,
                   textAlignVertical:
                       TextAlignVertical.center, // Center text vertically
                   decoration: const InputDecoration(
                     contentPadding: EdgeInsets.fromLTRB(14, 12, 14, 12),
-                    hintText: 'your secret code?',
+                    hintText: "your secret code?",
                     border: InputBorder.none,
                   ),
                 ),
               ),
             ),
-          ),
-
-          Positioned(
-            top: 351.0, // Adjust the top position as needed
-            left: 42.0, // Adjust the left position as needed
-            width: 18.0, // Set the width
-            height: 18.0, // Set the height
-            child: InkWell(
-              onTap: () {
-                // Handle checkbox tap here
-              },
-              child: Container(
-                width: 18.0,
-                height: 18.0,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle, // Oval shape
-                  border: Border.all(
-                    width: 1.0,
-                    color: Colors.grey, // Set the border color to light grey
+            Row(
+              children: [
+                Checkbox(
+                    value: isChecked,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5)),
+                    activeColor: color.AppColor.CheckBox,
+                    onChanged: (newBool) {
+                      setState(() {
+                        isChecked = newBool;
+                      });
+                    }),
+                const Text(
+                  "Save Password",
+                  style: TextStyle(
+                    fontSize:11,
+                    fontFamily: 'Inter',
+                    fontWeight: FontWeight.w400,
+                    color: Colors.black,
                   ),
                 ),
-                child: Center(
-                  child: // Add your checkbox widget here
-                      Checkbox(
-                    value: false, // Set the initial value of the checkbox
-                    onChanged: (bool? newValue) {
-                      // Handle checkbox state change here
-                    },
+                Expanded(child: Container()),
+                Text(
+                  "Forgot password?",
+                  style: TextStyle(
+                    fontSize:11,
+                    fontFamily: 'Inter',
+                    fontWeight: FontWeight.w400,
+                    color: color.AppColor.CheckBox,
                   ),
+                )
+              ],
+            ),
+            const SizedBox(height: 20,),
+            Container(
+              padding: const EdgeInsets.only(left: 40, right: 20),
+              child: Row(
+                children: [
+                  InkWell(
+                      onTap: () {
+                        // Navigate to /home when the image is tapped
+                        Navigator.pushNamed(context, '/load3');
+
+                      },
+                      child: Image.asset('assets/2.png')
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 15,),
+            const Center(
+              child: Text(
+                "or continue with",
+                style: TextStyle(
+                  fontSize: 13,
+                  fontFamily: 'Inter',
+                  fontWeight: FontWeight.w500,
+                  color: Colors.black,
                 ),
               ),
             ),
-          ),
+            const SizedBox(height: 20,),
+            Row(
+              children: [
+                Container(
+                  padding: const EdgeInsets.only(left: 100, right: 20),
+                  child: Row(
+                    children: [
+                      InkWell(
+                          onTap: () {
+                            // Navigate to /home when the image is tapped
+                            Navigator.pushNamed(context, '/load3');
 
-          // Positioned widget for "save password" text
-          const Positioned(
-            top: 354.0, // Adjust the top position as needed
-            left: 64.0, // Adjust the left position as needed
-            width: 100.0, // Increase the width to accommodate larger text
-            height: 14.0, // Set the height
-            child: Text(
-              'save password',
-              style: TextStyle(
-                fontFamily: 'Inter',
-                fontSize: 11.0, // Increase the font size
-                fontWeight: FontWeight.w400,
-                height:
-                    1.30, // This corresponds to a line height of 22px for 11px font size
-                letterSpacing: 0.0, // No letter-spacing
-                color: Colors.black, // Text color set to black
+                          },
+                          child: Image.asset('assets/3.png')
+                      ),
+                      const SizedBox(width: 30,),
+                      InkWell(
+                          onTap: () {
+                            // Navigate to /home when the image is tapped
+                            Navigator.pushNamed(context, '/load3');
+
+                          },
+                          child: Image.asset('assets/4.png')
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 130,),
+            Container(
+              padding: const EdgeInsets.only(left: 80, right: 20),
+              child: Row(
+                children: [
+                  InkWell(
+                      onTap: () {
+                        // Navigate to /home when the image is tapped
+                        Navigator.pushNamed(context, '/signup');
+
+                      },
+                      child: Image.asset('assets/5.png')
+                  ),
+                ],
               ),
-              textAlign: TextAlign.left, // Text alignment
-            ),
-          ),
-
-          const Positioned(
-            top: 354.0, // Adjust the top position as needed
-            left: 270.0, // Adjust the left position as needed
-            width: 100.0, // Increase the width to accommodate larger text
-            height: 14.0, // Set the height
-            child: Text(
-              'Forgot password? ',
-              style: TextStyle(
-                fontFamily: 'Inter',
-                fontSize: 11.0, // Increase the font size
-                fontWeight: FontWeight.w400,
-                height:
-                    1.30, // This corresponds to a line height of 22px for 11px font size
-                letterSpacing: 0.0, // No letter-spacing
-                color: Colors.green, // Text color set to black
-              ),
-              textAlign: TextAlign.left, // Text alignment
-            ),
-          ),
-
-          Positioned(
-            top: 415.0, // Adjust the top position as needed
-            left: 68.0, // Adjust the left position as needed
-            width: 254.0, // Set the width
-            height: 44.0, // Set the height
-            child: InkWell(
-              onTap: () {
-
-                Navigator.pushNamed(context, '/home');
-                // Navigate to /home when the image is tapped
-                // signup();
-              },
-              child: Image.asset(
-                  'assets/2.png'), // Replace with your fourth image asset path
-            ),
-          ),
-
-          // Positioned widget with updated layout and typography
-          const Positioned(
-            top: 472.0, // Adjust the top position as needed
-            left: 149.0, // Adjust the left position as needed
-            width: 93.0, // Set the width
-            height: 15.0, // Set the height
-            child: Text(
-              'or continue with',
-              style: TextStyle(
-                fontFamily: 'Inter',
-                fontSize: 12.0, // Set the font size to 12px
-                fontWeight: FontWeight.w500,
-                height:
-                    1.50, // Set the line height to match the height of the text
-                letterSpacing: 0.0, // No letter-spacing
-                color: Colors.black, // Text color set to black
-              ),
-              textAlign: TextAlign.left, // Text alignment
-            ),
-          ),
-
-          Positioned(
-            top: 507.0, // Adjust the top position as needed
-            left: 127.0, // Adjust the left position as needed
-            width: 57.0, // Set the width
-            height: 57.0, // Set the height
-            child: InkWell(
-              onTap: () {
-                // Navigate to /home when the image is tapped
-                Navigator.pushNamed(context, '/splash');
-              },
-              child: Image.asset(
-                  'assets/3.png'), // Replace with your fourth image asset path
-            ),
-          ),
-
-          Positioned(
-            top: 507.0, // Adjust the top position as needed
-            left: 208.0, // Adjust the left position as needed
-            width: 57.0, // Set the width
-            height: 57.0, // Set the height
-            child: InkWell(
-              onTap: () {
-                // Navigate to /home when the image is tapped
-                Navigator.pushNamed(context, '/splash');
-              },
-              child: Image.asset(
-                  'assets/4.png'), // Replace with your fourth image asset path
-            ),
-          ),
-
-          Positioned(
-            top: 730.0, // Adjust the top position as needed
-            left: 104.0, // Adjust the left position as needed
-            width: 182.0, // Set the width
-            height: 16.0, // Set the height
-            child: InkWell(
-              onTap: () {
-                // Navigate to /home when the image is tapped
-                Navigator.pushNamed(context, '/signup');
-              },
-              child: Image.asset(
-                  'assets/5.png'), // Replace with your fourth image asset path
-            ),
-          ),
-        ],
+            )
+          ],
+        ),
       ),
-    );
+    ));
   }
 }

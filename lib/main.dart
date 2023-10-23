@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       onGenerateRoute: AppRouter.onGenerateRoute,
-      initialRoute: AddCardScreen.routeName,
+      initialRoute: HomeScreen.routeName,
     );
   }
 }
