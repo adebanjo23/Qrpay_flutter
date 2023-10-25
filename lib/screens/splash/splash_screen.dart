@@ -25,7 +25,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<void> _navigateToLoginAfterDelay() async {
-    await Future.delayed(const Duration(seconds: 5)); // Wait for 3 seconds
+    await Future.delayed(const Duration(seconds:3)); // Wait for 3 seconds
 
     Navigator.pushNamed(context, '/load1'); // Navigate to the login screen
   }
@@ -48,7 +48,7 @@ class _SplashScreenState extends State<SplashScreen> {
         ),
         child: Center(
           child: Image.asset(
-            'assets/qrpay.png', // Replace with your image path
+            'assets/splash_screen/qrpay.png', // Replace with your image path
             width: 200, // Adjust the width as needed
             height: 200, // Adjust the height as needed
           ),

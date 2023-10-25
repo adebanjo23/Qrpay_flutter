@@ -65,6 +65,11 @@ flutter:
     - assets/
     - assets/load_screens/
     - assets/home_screen/
+    - assets/login_screen/
+    - assets/signup_screen/
+    - assets/splash_screen/
+    - assets/add_money/
+    - assets/bank_transfer/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

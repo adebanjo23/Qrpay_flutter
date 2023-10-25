@@ -187,10 +187,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   InkWell(
                       onTap: () {
                         // Navigate to /home when the image is tapped
-                        Navigator.pushNamed(context, '/load3');
+                        Navigator.pushNamed(context, '/home');
 
                       },
-                      child: Image.asset('assets/2.png')
+                      child: Image.asset('assets/login_screen/2.png')
                   ),
                 ],
               ),
@@ -220,7 +220,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             Navigator.pushNamed(context, '/load3');
 
                           },
-                          child: Image.asset('assets/3.png')
+                          child: Image.asset('assets/login_screen/3.png')
                       ),
                       const SizedBox(width: 30,),
                       InkWell(
@@ -229,7 +229,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             Navigator.pushNamed(context, '/load3');
 
                           },
-                          child: Image.asset('assets/4.png')
+                          child: Image.asset('assets/login_screen/4.png')
                       ),
                     ],
                   ),
@@ -247,7 +247,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         Navigator.pushNamed(context, '/signup');
 
                       },
-                      child: Image.asset('assets/5.png')
+                      child: Image.asset('assets/login_screen/5.png')
                   ),
                 ],
               ),

@@ -231,7 +231,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           Navigator.pushNamed(context, '/load3');
 
                         },
-                        child: Image.asset('assets/6.png')
+                        child: Image.asset('assets/signup_screen/6.png')
                     ),
                   ],
                 ),
@@ -247,7 +247,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           Navigator.pushNamed(context, '/login');
 
                         },
-                        child: Image.asset('assets/7.png')
+                        child: Image.asset('assets/signup_screen/7.png')
                     ),
                   ],
                 ),
