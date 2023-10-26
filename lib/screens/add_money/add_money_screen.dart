@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qrpay/utils/config.dart';
+import 'package:qrpay/colors.dart' as color;
 
 class AddMoneyScreen extends StatelessWidget {
   const AddMoneyScreen({super.key});
@@ -17,7 +18,29 @@ class AddMoneyScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(appBar: AppBar(
       title: const Text('Top-up With Card'),
-      backgroundColor: Config.primaryColor,
+      backgroundColor: Colors.transparent,
+      elevation: 0.0,
+      toolbarHeight: 62,
+      centerTitle: true,
+      actions: [
+      ],
+      flexibleSpace: Container(
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.only(
+            bottomLeft: Radius.circular(30),
+            bottomRight: Radius.circular(30),
+          ),
+          gradient: LinearGradient(
+            colors: [
+              color.AppColor.HomeScreenAppBar1,
+              color.AppColor.HomeScreenAppBar1,
+              color.AppColor.HomeScreenAppBar2.withOpacity(0.66),
+            ],
+            begin: const Alignment(0, -2),
+            end: const Alignment(0, 2),
+          ),
+        ),
+      ),
     ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

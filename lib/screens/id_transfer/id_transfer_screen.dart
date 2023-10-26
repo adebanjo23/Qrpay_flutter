@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qrpay/utils/config.dart';
+import 'package:qrpay/colors.dart' as color;
 
 class IdTransferScreen extends StatelessWidget {
   const IdTransferScreen({super.key});
@@ -13,12 +14,56 @@ class IdTransferScreen extends StatelessWidget {
     );
   }
 
+  InputDecoration _roundedBoxDecoration(String labelText, String hintText) {
+    return InputDecoration(
+      labelText: labelText,
+      hintText: hintText,
+      contentPadding: const EdgeInsets.all(16.0),
+      border: InputBorder.none,
+
+      filled: true,
+      fillColor: Colors.grey[200], // Adjust the background color as needed
+      enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide.none,
+        borderRadius: BorderRadius.circular(20.0),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide.none,
+        borderRadius: BorderRadius.circular(20.0),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text('ID Transfer'),
-          backgroundColor: Config.primaryColor
+        title: const Text(
+          'ID Transfer',
+          style: TextStyle(color: Colors.black45),
+        ),
+        backgroundColor: Colors.transparent,
+        elevation: 0.0,
+        toolbarHeight: 62,
+        centerTitle: true,
+        actions: [],
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            borderRadius: const BorderRadius.only(
+              bottomLeft: Radius.circular(30),
+              bottomRight: Radius.circular(30),
+            ),
+            gradient: LinearGradient(
+              colors: [
+                color.AppColor.HomeScreenAppBar1,
+                color.AppColor.HomeScreenAppBar1,
+                color.AppColor.HomeScreenAppBar2.withOpacity(0.66),
+              ],
+              begin: const Alignment(0, -2),
+              end: const Alignment(0, 2),
+            ),
+          ),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -26,9 +71,9 @@ class IdTransferScreen extends StatelessWidget {
           children: [
             // Card Number Field
             TextFormField(
-              decoration: const InputDecoration(
-                labelText: 'Recipient Account',
-                hintText: 'QRpay ID number',
+              decoration: _roundedBoxDecoration(
+                'Recipient Account',
+                'QRpay ID number',
               ),
             ),
             const SizedBox(height: 16.0), // Add spacing between fields
@@ -37,7 +82,8 @@ class IdTransferScreen extends StatelessWidget {
               onTap: () {
                 // Handle button tap action here
               },
-              child: Image.asset('assets/bank_transfer/bank_transfer_button.png'),
+              child:
+                  Image.asset('assets/bank_transfer/bank_transfer_button.png'),
             ),
           ],
         ),

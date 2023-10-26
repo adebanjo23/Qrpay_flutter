@@ -27,7 +27,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Future<void> _navigateToLoginAfterDelay() async {
     await Future.delayed(const Duration(seconds:3)); // Wait for 3 seconds
 
-    Navigator.pushNamed(context, '/load1'); // Navigate to the login screen
+    Navigator.pushNamed(context, '/profile'); // Navigate to the login screen meant to be load1 btw
   }
 
   @override
