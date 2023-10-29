@@ -71,6 +71,10 @@ flutter:
     - assets/add_money/
     - assets/bank_transfer/
     - assets/add_card/
+    - assets/add_card_successful/
+    - assets/transfer_failed/
+    - assets/transfer_successful/
+    - assets/frame/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -5,6 +5,10 @@ class Config {
   static double? screenWidth;
   static double? screenHeight;
 
+  Config(BuildContext context) {
+    init(context);
+  }
+
   //width and height initialization
   void init(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
@@ -32,5 +36,7 @@ class Config {
   );
 
   static const primaryColor = Colors.green;
+
+  static const appBarFill = Colors.black54;
 
 }

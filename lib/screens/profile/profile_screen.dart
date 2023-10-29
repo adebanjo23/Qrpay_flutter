@@ -18,7 +18,7 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Profile', style: TextStyle(color: Colors.black45),),
+        title: const Text('Profile', style: TextStyle(color: Config.appBarFill),),
         backgroundColor: Colors.transparent,
         elevation: 0.0,
         toolbarHeight: 62,

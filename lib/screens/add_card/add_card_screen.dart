@@ -36,17 +36,18 @@ class AddCardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Config(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text(
           'Add Card',
-          style: TextStyle(color: Colors.black45),
+          style: TextStyle(color: Config.appBarFill),
         ),
         backgroundColor: Colors.transparent,
         elevation: 0.0,
         toolbarHeight: 62,
         centerTitle: true,
-        actions: [],
+        actions: const [],
         flexibleSpace: Container(
           decoration: BoxDecoration(
             borderRadius: const BorderRadius.only(
@@ -76,7 +77,7 @@ class AddCardScreen extends StatelessWidget {
                 'Enter 10 digits',
               ),
             ),
-            const SizedBox(height: 16.0), // Add spacing between fields
+            Config.spaceSmall,
 
             // Name on Card Field
             TextFormField(
@@ -85,7 +86,7 @@ class AddCardScreen extends StatelessWidget {
                 'Enter full name',
               ),
             ),
-            const SizedBox(height: 16.0), // Add spacing between fields
+            Config.spaceSmall,
 
             // Expiry Date and CVV Fields in a Row
             Row(
@@ -99,7 +100,7 @@ class AddCardScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(width: 16.0), // Add spacing between fields
+                SizedBox(width: Config.screenWidth! *0.1), // Add spacing between fields
 
                 // CVV Field
                 Expanded(
@@ -112,12 +113,11 @@ class AddCardScreen extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 16.0), // Add spacing between fields
-            ElevatedButton(
-                style:
-                    ElevatedButton.styleFrom(backgroundColor: Colors.white70),
-                onPressed: () {
-                  ;
+            Config.spaceBig,
+            GestureDetector(
+
+                onTap: () {
+
                 },
                 child: Image.asset('assets/add_card/add_card_button.png')),
           ],

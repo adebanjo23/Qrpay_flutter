@@ -36,11 +36,12 @@ class IdTransferScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Config(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text(
           'ID Transfer',
-          style: TextStyle(color: Colors.black45),
+          style: TextStyle(color: Config.appBarFill),
         ),
         backgroundColor: Colors.transparent,
         elevation: 0.0,
@@ -76,7 +77,7 @@ class IdTransferScreen extends StatelessWidget {
                 'QRpay ID number',
               ),
             ),
-            const SizedBox(height: 16.0), // Add spacing between fields
+            SizedBox(height: Config.screenHeight! * 0.1,),
 
             GestureDetector(
               onTap: () {
@@ -85,6 +86,15 @@ class IdTransferScreen extends StatelessWidget {
               child:
                   Image.asset('assets/bank_transfer/bank_transfer_button.png'),
             ),
+            Config.spaceBig,
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.grey[200], // Change the background color as needed
+                borderRadius: BorderRadius.circular(10), // Adjust the radius for the desired roundness
+              ),
+              child: Text('See who else is using QR pay'), // Replace YourContent with the content you want inside the container
+            )
+
           ],
         ),
       ),

@@ -14,6 +14,10 @@ import 'package:qrpay/screens/bank_transfer/bank_transfer_screen.dart';
 import 'package:qrpay/screens/id_transfer/id_transfer_screen.dart';
 import 'package:qrpay/screens/profile/profile_screen.dart';
 import 'package:qrpay/screens/frame/frame_screen.dart';
+import 'package:qrpay/screens/add_card_successful/add_card_successful_screen.dart';
+import 'package:qrpay/screens/transfer_successful/transfer_successful_screen.dart';
+import 'package:qrpay/screens/transfer_failed/transfer_failed_screen.dart';
+import 'package:qrpay/screens/receipt/receipt_screen.dart';
 
 class AppRouter {
   static Route onGenerateRoute(RouteSettings settings) {
@@ -50,6 +54,14 @@ class AppRouter {
         return ProfileScreen.route();
       case FrameScreen.routeName:
         return FrameScreen.route();
+      case AddCardSuccessfulScreen.routeName:
+        return AddCardSuccessfulScreen.route();
+      case TransferSuccessfulScreen.routeName:
+        return TransferSuccessfulScreen.route();
+      case TransferFailedScreen.routeName:
+        return TransferFailedScreen.route();
+      case ReceiptScreen.routeName:
+        return ReceiptScreen.route();
 
 
         break;

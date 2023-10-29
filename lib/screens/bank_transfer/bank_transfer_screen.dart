@@ -37,11 +37,12 @@ class BankTransferScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Config(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text(
           'Bank Transfer',
-          style: TextStyle(color: Colors.black45),
+          style: TextStyle(color: Config.appBarFill),
         ),
         backgroundColor: Colors.transparent,
         elevation: 0.0,
@@ -76,18 +77,18 @@ class BankTransferScreen extends StatelessWidget {
                 'Enter Recipient Account Number',
               ),
             ),
-            const SizedBox(height: 16.0), // Add spacing between fields
+            Config.spaceSmall,
 
             TextFormField(
               decoration: _roundedBoxDecoration('Bank', 'Select Bank'),
             ),
-            const SizedBox(height: 16.0), // Add spacing between fields
+            Config.spaceSmall,
 
             TextFormField(
               decoration:
                   _roundedBoxDecoration('Amount', '100.00 - 2,000,000.00'),
             ),
-            const SizedBox(height: 16.0), // Add spacing between fields
+            Config.spaceBig,
 
             GestureDetector(
               onTap: () {

@@ -14,58 +14,84 @@ class AddMoneyScreen extends StatelessWidget {
     );
   }
 
+  InputDecoration _roundedBoxDecoration(String labelText, String hintText) {
+    return InputDecoration(
+      labelText: labelText,
+      hintText: hintText,
+      contentPadding: const EdgeInsets.all(16.0),
+      border: InputBorder.none,
+
+      filled: true,
+      fillColor: Colors.grey[200], // Adjust the background color as needed
+      enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide.none,
+        borderRadius: BorderRadius.circular(20.0),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide.none,
+        borderRadius: BorderRadius.circular(20.0),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(
-      title: const Text('Top-up With Card'),
-      backgroundColor: Colors.transparent,
-      elevation: 0.0,
-      toolbarHeight: 62,
-      centerTitle: true,
-      actions: [
-      ],
-      flexibleSpace: Container(
-        decoration: BoxDecoration(
-          borderRadius: const BorderRadius.only(
-            bottomLeft: Radius.circular(30),
-            bottomRight: Radius.circular(30),
-          ),
-          gradient: LinearGradient(
-            colors: [
-              color.AppColor.HomeScreenAppBar1,
-              color.AppColor.HomeScreenAppBar1,
-              color.AppColor.HomeScreenAppBar2.withOpacity(0.66),
-            ],
-            begin: const Alignment(0, -2),
-            end: const Alignment(0, 2),
+    Config(context);
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          'Top-up With Card',
+          style: TextStyle(color: Config.appBarFill),
+        ),
+        backgroundColor: Colors.transparent,
+        elevation: 0.0,
+        toolbarHeight: 62,
+        centerTitle: true,
+        actions: [],
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            borderRadius: const BorderRadius.only(
+              bottomLeft: Radius.circular(30),
+              bottomRight: Radius.circular(30),
+            ),
+            gradient: LinearGradient(
+              colors: [
+                color.AppColor.HomeScreenAppBar1,
+                color.AppColor.HomeScreenAppBar1,
+                color.AppColor.HomeScreenAppBar2.withOpacity(0.66),
+              ],
+              begin: const Alignment(0, -2),
+              end: const Alignment(0, 2),
+            ),
           ),
         ),
       ),
-    ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: ListView(
           children: [
+            Config.spaceMedium,
             // Card Number Field
             TextFormField(
-              decoration: const InputDecoration(
-                labelText: 'Enter an Amount',
-                hintText: '10.00 - 2,000,000.00',
+              decoration: _roundedBoxDecoration(
+                'Enter an Amount',
+                '10.00 - 2,000,000.00',
               ),
             ),
-            const SizedBox(height: 16.0), // Add spacing between fields
-            const Text(
-                'Choose a Card to debit from',
-                style: TextStyle(fontSize: 24, // Set the font size
-                  fontWeight: FontWeight.bold,)
-            ),
+            Config.spaceMedium, // Add spacing between fields
+            const Text('Choose a Card to debit from',
+                style: TextStyle(
+                  fontSize: 20, // Set the font size
+                  fontWeight: FontWeight.bold,
+                )),
 
             // Card List
             SizedBox(
               height: 100, // Customize the height of the card list
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: cardList.length + 1, // Plus 1 for the "Add Card" card
+                itemCount:
+                    cardList.length + 1, // Plus 1 for the "Add Card" card
                 itemBuilder: (context, index) {
                   if (index == cardList.length) {
                     // Display the "Add Card" card
@@ -76,15 +102,20 @@ class AddMoneyScreen extends StatelessWidget {
                       child: const Card(
                         // Customize the "Add Card" card's appearance
                         child: Center(
-                          child: Icon(Icons.add, size: 48.0, color: Colors.green),
+                          child:
+                              Icon(Icons.add, size: 48.0, color: Colors.green),
                         ),
                       ),
                     );
                   } else {
                     // Display a regular card from the cardList
                     return const Card(
-                        child: Icon(Icons.account_circle_rounded, size: 48.0, color: Colors.lightBlue,)// Your card content here
-                    );
+                        child: Icon(
+                      Icons.account_circle_rounded,
+                      size: 48.0,
+                      color: Colors.lightBlue,
+                    ) // Your card content here
+                        );
                   }
                 },
               ),
@@ -92,7 +123,7 @@ class AddMoneyScreen extends StatelessWidget {
 
             // Expiry Date and CVV Fields
 
-            const SizedBox(width: 16.0), // Add spacing between fields
+            Config.spaceBig,
 
             GestureDetector(
               onTap: () {
@@ -106,7 +137,6 @@ class AddMoneyScreen extends StatelessWidget {
     );
   }
 }
-
 
 class CardData {
   final String cardNumber;
