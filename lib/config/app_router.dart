@@ -15,6 +15,7 @@ import 'package:qrpay/screens/id_transfer/id_transfer_screen.dart';
 import 'package:qrpay/screens/profile/profile_screen.dart';
 import 'package:qrpay/screens/frame/frame_screen.dart';
 import 'package:qrpay/screens/add_card_successful/add_card_successful_screen.dart';
+import 'package:qrpay/screens/tokenize_card/tokenize_card_screen.dart';
 import 'package:qrpay/screens/transfer_successful/transfer_successful_screen.dart';
 import 'package:qrpay/screens/transfer_failed/transfer_failed_screen.dart';
 import 'package:qrpay/screens/receipt/receipt_screen.dart';
@@ -62,6 +63,8 @@ class AppRouter {
         return TransferFailedScreen.route();
       case ReceiptScreen.routeName:
         return ReceiptScreen.route();
+      case TokenizeCardScreen.routeName:
+        return TokenizeCardScreen.route();
 
 
         break;
